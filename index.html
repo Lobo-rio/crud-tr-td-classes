@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Estudos - CRUD dentro de LI (Classes)</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Css do Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">JavaScript, Crud com TR(Classes)!!</h1>
+            <p class="lead">Este é um simples crud, sem atualização de banco de dados, as informações serão aplicadas na
+                tela e serão guardadas no Local Storage do Navegador, todas as informações poderão ser removidas do Local Storage e voltar ao ponto inicial!</p>
+            <hr class="my-4">
+            <p>Ele usa classes para manipular os elementos da tela.</p>
+        </div>
+
+        <div id="message"></div>
+        
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Acões</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registrationName"></tbody>
+                </table>
+                <form name="form-curd-li-classes" class="form-inline" action="" method="post">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input id="name" type="text" class="form-control" name="name" placeholder="Informe o nome...">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input id="email" type="email" class="form-control" name="email"
+                            placeholder="Informe o email...">
+                    </div>
+                    <button id="btnInclude" type="submit" class="btn btn-outline-success mb-2">
+                        <i class="fa fa-upload"></i>
+                        Incluir
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Modal User -->
+        <div class="modal fade" id="editTr" tabindex="-1" role="dialog" aria-labelledby="EditTrLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Alterando Dados do(a) Usuário(a)!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formModal" name="form-modal-li" action="" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset disabled>
+                                        <div class="form-group">
+                                            <input id="idModal" type="text" class="form-control" name="idModal"
+                                                placeholder="Informe o nome...">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="nameModal" type="text" class="form-control" name="nameModal"
+                                            placeholder="Informe o nome...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input id="emailModal" type="email" class="form-control" name="emailModal"
+                                            placeholder="Informe o endereço de email...">
+                                    </div>
+                                </div>    
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Fechar</button>
+                        <button id="btnEditModal" type="button" class="btn btn-outline-primary">
+                            <i class="fa fa-file-text" aria-hidden="true"></i>
+                            Alterar Dados
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Address -->
+        <div class="modal fade" id="editAddressTr" tabindex="-1" role="dialog" aria-labelledby="EditAddressTrLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">Incluíndo Dados do(a) Endereço do(a) Usuário(a)!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAddressModal" name="form-modal-li" action="" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset disabled>
+                                        <div class="form-group">
+                                            <input id="idAddressModal" type="text" class="form-control" name="idAddressModal"
+                                                placeholder="Informe o nome...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="nameAddressModal" type="text" class="form-control" name="nameAddressModal"
+                                                placeholder="Informe o nome...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="emailAddressModal" type="email" class="form-control" name="emailAddressModal"
+                                                placeholder="Informe o endereço de email...">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input id="AddressModal" type="text" class="form-control" name="AddressModal"
+                                            placeholder="Informe o endereço...">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input id="numberAddressModal" type="text" class="form-control" name="numberAddressModal"
+                                            placeholder="Informe o número...">
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="cityAddressModal" type="text" class="form-control" name="cityAddressModal"
+                                            placeholder="Informe a cidade...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="ufAddressModal" type="text" class="form-control" name="ufAddressModal"
+                                            placeholder="Informe o estado (UF)...">
+                                    </div>
+                                </div>    
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Fechar</button>
+                        <button id="btnEditAddressModal" type="button" class="btn btn-outline-primary">
+                            <i class="fa fa-upload"></i>
+                            Incluir Endereço
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="src/utils/index.js"></script>
+    <script src="src/view/User.js"></script>
+    <script src="src/controller/User.js"></script>
+    <script src="src/controller/Address.js"></script>
+    <script src="src/model/User.js"></script>
+    <script src="src/model/Address.js"></script>
+    <script src="src/index.js"></script>
+    
+</body>
+
+</html>
